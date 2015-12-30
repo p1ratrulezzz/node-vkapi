@@ -8,7 +8,7 @@
     "url": "git@github.com:olnaz/node-vkapi.git"
   },
   "main": "./lib/node-vkapi.js",
-  "scripts": {},
+  "scripts": {}, 
   "keywords": [
     "vk",
     "vk.com",

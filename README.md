@@ -25,7 +25,7 @@ VK.call('users.get', {
     1. `code` and `redirect_uri` params
     2. User's login and password
 * Getting server `access_token`
-* Uploading files to vk.com (soon)
+* Uploading files to vk.com
 
 ## Example
 
@@ -123,6 +123,25 @@ Method `vkapi.setOptions` returns `this`.
 Номер телефона должен начинаться с +.  
 
 После успешного получения токена, он сохраняется в `vkapi.options.token`.
+
+### vkapi.upload(type, file, params):
+* `type` (String): One of given [types of uploads](#types-of-uploads)
+* `file` (Readable Stream): or Array of Readable Streams (only for `photo_album` type)
+* `params` (Object):
+    * `< .. method params .. >`: See vk.com/dev/upload_files
+    * `access_token`* (String): `vkapi.options.token` by default. **Required**, if default token was not set.
+* returs Object{< .. VK API Response .. >}
+
+Имейте в виду, что для загрузки файлов вы должны иметь соответствующие разрешения.
+
+#### Types of uploads
+* `audio`
+* `video`
+* `document`
+* `photo_pm`
+* `photo_wall`
+* `photo_main`
+* `photo_album`
 
 ### vkapi.setOptions(options):  
 * `options` (Object): [Constructor object](#new-vkapi-options)

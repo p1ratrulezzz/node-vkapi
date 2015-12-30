@@ -4,7 +4,7 @@ Node.JS SDK for vk.com API
 
 ## Installation
 
-  $ npm install node-vkapi --save
+    $ npm install node-vkapi --save
 
 ## Usage
 

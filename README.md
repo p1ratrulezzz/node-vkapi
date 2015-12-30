@@ -84,24 +84,24 @@ Method `vkapi.setOptions` returns `this`.
 Параметр `authData` имеет смысл передавать только в том случае, если вы планируете получать `access_token` путем авторизации по логину и паролю.
 
 ### vkapi.call(method, params):  
-* returns Object{< .. VK API Response .. >}
 * `method`* (String)
 * `params` (Object):
     * `< .. method params .. >`
     * `v` (String): `vkapi.options.version` by default
     * `access_token` (String): `vkapi.options.token` by default
+* returns Object{< .. VK API Response .. >}
 
 Если параметр `v` не передан, то `v` всегда будет равен последней версии VK API.  
 Параметр `access_token` имеет смысл передавать, если метод его требует и в `vkapi.options.token` он не задан. 
 
 ### vkapi.getAccessToken(params):  
-* returns Object{access_token, expires_in?, user_id?}
 * `params` (Object):
     * `client_id` (String): `vkapi.options.appId` by default
     * `client_secret` (String): `vkapi.options.appSecret` by default
     * `code` (String)
     * `redirect_uri` (String)
     * `v` (String): `vkapi.options.version` by default
+* returns Object{access_token, expires_in?, user_id?}
 
 Получение `access_token` по переданным параметрам. 
 
@@ -109,13 +109,13 @@ Method `vkapi.setOptions` returns `this`.
 Если не передан какой-либо из параметров [`code`, `redirect_uri`], то будет получен серверный `access_token`.
 
 ### vkapi.getTokenByLogin(params):  
-* returns Object{access_token, expires_in, user_id}
 * `params` (Object):
     * `appId` (String): `vkapi.options.appId` by default
     * `scope` (String or Array): Permissions (vk.com/dev/permissions)
     * `login` (String): `vkapi.options.authData.login` by default
     * `pass` (String): `vkapi.options.authData.pass` by default
     * `v` (String): `vkapi.options.version` by default
+* returns Object{access_token, expires_in, user_id}
 
 Перед использованием метода рекомендуется указать номер телефона в `vkapi.options.authData.phone`, если `login` является е-мэилом, так как при авторизации возможна "проверка безопасности", когда нужно подтвердить свой номер телефона, введя его в поле.  
 Номер телефона должен начинаться с +.  
@@ -123,5 +123,5 @@ Method `vkapi.setOptions` returns `this`.
 После успешного получения токена, он сохраняется в `vkapi.options.token`.
 
 ### vkapi.setOptions(options):  
-* returns this
 * `options` (Object): [Constructor object](#new-vkapi-options)
+* returns this

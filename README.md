@@ -39,7 +39,7 @@ VK.call('users.get', {
         * `login` (String)
         * `pass` (String)
         * `phone` (String): Phone number (Example: +79991234567)
-    * `version` (String): Latest VK API version by default
+    * `version` (String): `Latest VK API version` by default
     * `token` (String): Access token
 
 Параметр `authData` имеет смысл передавать только в том случае, если вы планируете получать `access_token` путем авторизации по логину и паролю.
@@ -48,8 +48,8 @@ VK.call('users.get', {
 * `method`* (String)
 * `params` (Object):
     * `< .. method params .. >`
-    * `v` (String)
-    * `access_token` (String)
+    * `v` (String): `vkapi.options.version` by default
+    * `access_token` (String): `vkapi.options.token` by default
 
 Если параметр `v` не передан, то `v` всегда будет равен последней версии VK API.  
 Параметр `access_token` имеет смысл передавать, если метод его требует и в `vkapi.options.token` он не задан. 
@@ -71,8 +71,8 @@ VK.call('users.get', {
 * `params` (Object):
     * `appId` (String): `vkapi.options.appId` by default
     * `scope` (String or Array): Permissions (vk.com/dev/permissions)
-    * `login` (String)
-    * `pass` (String)
+    * `login` (String): `vkapi.options.authData.login` by default
+    * `pass` (String): `vkapi.options.authData.pass` by default
     * `v` (String): `vkapi.options.version` by default
 
 ### vkapi.setOptions (options):

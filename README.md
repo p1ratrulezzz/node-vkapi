@@ -1,49 +1,79 @@
-# node-vkapi
+# node-vkapi - Node.JS SDK for VK.COM API
 
 [![Dependency Status](https://david-dm.org/olnaz/node-vkapi.svg)](https://david-dm.org/olnaz/node-vkapi)
-
-Node.JS SDK for vk.com API
-
-## Installation
-
-    $ npm install node-vkapi --save
-
-## Usage
 
 ```javascript
 const VKApi = require('node-vkapi');
 
-// create vk instance
-vk = new VKApi({
-  appId: 12345678, 
-  appSecret: 'ASDwfekdlFAzxlk', 
-  authData: {
-    login: 'email@gmail.com', 
-    pass: 'qwerty123', 
-    phone: '+1234566789'
-  }, 
-  version: '5.42'
+let VK = new VKApi();
+
+VK.call('users.get', {
+    user_ids: '1'
+}).then(res => {
+    console.log(res);
 });
-
-// make requests
-vk.call('users.get', {
-  user_ids: '1, 2, 3'
-})
-.then(r => console.log(r)) // vk api response json object
-.catch(e => console.log(e)) // vk api error json object
-
-// get access_token by 'code' param
-vk.getAccessToken({
-  code: 'jfksdj4ASDjksd', 
-  redirect_uri: 'http://yoursite.com/path'
-})
-.then(r => console.log(r)) // vk api response json object
-.catch(e => console.log(e)) // vk api error json object
-
-// get access_token via auth by login and pass
-vk.getTokenByLogin({
-  scope: ['friends', 'offline', 'photos']
-})
-.then(t => console.log(r)) // vk api response json object {access_token, expires_in, user_id}
-.catch(e => console.log(e)) // error object
 ```
+
+## Installation
+
+    $ npm install node-vkapi --save
+    
+## Features
+
+* Calling all VK API methods
+* Getting user `access_token` using:
+    1. `code` and `redirect_uri` params
+    2. User's login and password
+* Getting server `access_token`
+* Uploading files to vk.com (soon)
+
+## Usage
+
+`*` - required param
+
+### new vkapi (options):
+* `options` (Object)
+    * `appSecret` (String): Application secret key
+    * `appId` (String or Number)
+    * `authData` (Object):
+        * `login` (String)
+        * `pass` (String)
+        * `phone` (String): Phone number (Example: +79991234567)
+    * `version` (String): Latest VK API version by default
+    * `token` (String): Access token
+
+Параметр `authData` имеет смысл передавать только в том случае, если вы планируете получать `access_token` путем авторизации по логину и паролю.
+
+### vkapi.call (method, params):
+* `method`* (String)
+* `params` (Object):
+    * `< .. method params .. >`
+    * `v` (String)
+    * `access_token` (String)
+
+Если параметр `v` не передан, то `v` всегда будет равен последней версии VK API.
+`access_token` имеет смысл передавать, если метод его требует и в `vkapi.options.token` он не задан. 
+
+### vkapi.getAccessToken (params):
+* `params` (Object):
+    * `client_id` (String): `vkapi.options.appId` by default
+    * `client_secret` (String): `vkapi.options.appSecret` by default
+    * `code` (String)
+    * `redirect_uri` (String)
+    * `v` (String): `vkapi.options.version` by default
+
+Получение `access_token` по переданным параметрам. 
+
+Если переданы параметры `code` и `redirect_uri`, то будет получен пользовательский `access_token`.
+Если не передан какой-либо из параметров `code`, `redirect_uri`, то будет получен серверный `access_token`.
+
+### vkapi.getTokenByLogin (params):
+* `params` (Object):
+    * `appId` (String): `vkapi.options.appId` by default
+    * `scope` (String or Array): Permissions (vk.com/dev/permissions)
+    * `login` (String)
+    * `pass` (String)
+    * `v` (String): `vkapi.options.version` by default
+
+### vkapi.setOptions (options):
+* `options` (Object): Constructor object

@@ -3,6 +3,8 @@
 [![Dependency Status](https://david-dm.org/olnaz/node-vkapi.svg)](https://david-dm.org/olnaz/node-vkapi)
 
 ```javascript
+'use strict';
+
 const VKApi = require('node-vkapi');
 
 let VK = new VKApi();
@@ -142,6 +144,33 @@ Method `vkapi.setOptions` returns `this`.
 * `photo_wall`
 * `photo_main`
 * `photo_album`
+
+#### Example of uploading
+
+```javascript
+// upload 'photo_wall', then post it to own wall
+
+'use strict';
+
+const fs = require('fs');
+const VKapi = require('node-vkapi');
+
+const VK = new VKapi({
+  token: 'access_token'
+});
+
+VK.upload('photo_wall', fs.createReadStream('photo.png'))
+  .then(r => {
+    return VK.call('wall.post', {
+      owner_id: r[0].owner_id, 
+      attachments: 'photo' + r[0].owner_id + '_' + r[0].id
+    }).then(res => {
+      return 'https://vk.com/wall' + r[0].owner_id + '_' + res.post_id;
+    });
+  })
+  .then(link => console.log('Your post with photo is here: ' + link))
+  .catch(e => console.log(e));
+```
 
 ### vkapi.setOptions(options):  
 * `options` (Object): [Constructor object](#new-vkapi-options)

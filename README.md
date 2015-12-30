@@ -103,7 +103,7 @@ Method `vkapi.setOptions` returns `this`.
     * `code` (String)
     * `redirect_uri` (String)
     * `v` (String): `vkapi.options.version` by default
-* returns Object{access_token, expires_in?, user_id?}
+* returns Object{access_token, expires_in?, user_id?, email?}
 
 Получение `access_token` по переданным параметрам. 
 
@@ -117,7 +117,7 @@ Method `vkapi.setOptions` returns `this`.
     * `login` (String): `vkapi.options.authData.login` by default
     * `pass` (String): `vkapi.options.authData.pass` by default
     * `v` (String): `vkapi.options.version` by default
-* returns Object{access_token, expires_in, user_id}
+* returns Object{access_token, expires_in, user_id, email?}
 
 Перед использованием метода рекомендуется указать номер телефона в `vkapi.options.authData.phone`, если `login` является е-мэилом, так как при авторизации возможна "проверка безопасности", когда нужно подтвердить свой номер телефона, введя его в поле.  
 Номер телефона должен начинаться с +.  

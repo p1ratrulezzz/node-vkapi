@@ -1,0 +1,27 @@
+{
+  "name": "node-vkapi",
+  "version": "1.0.0",
+  "description": "Node.JS SDK for vk.com API",
+  "author": "olnaz",
+  "repository": {
+    "type": "git", 
+    "url": ""
+  },
+  "main": "./lib/node-vkapi.js",
+  "scripts": {},
+  "keywords": [
+    "vk",
+    "vk.com", 
+    "vkontakte", 
+    "vk-api", 
+    "api"
+  ],
+  "license": "ISC",
+  "dependencies": {
+    "cheerio": "^0.19.0",
+    "request-promise": "^1.0.2"
+  },
+  "engines": {
+    "node": ">=5.2.0"
+  }
+}

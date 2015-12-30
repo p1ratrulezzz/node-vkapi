@@ -1,19 +1,19 @@
 {
   "name": "node-vkapi",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Node.JS SDK for vk.com API",
   "author": "olnaz",
   "repository": {
-    "type": "git", 
+    "type": "git",
     "url": "git@github.com:olnaz/node-vkapi.git"
   },
   "main": "./lib/node-vkapi.js",
   "scripts": {},
   "keywords": [
     "vk",
-    "vk.com", 
-    "vkontakte", 
-    "vk-api", 
+    "vk.com",
+    "vkontakte",
+    "vk-api",
     "api"
   ],
   "license": "ISC",

@@ -1,4 +1,4 @@
-# node-vkapi - Node.JS SDK for VK.COM API
+# node-vkapi
 
 [![Dependency Status](https://david-dm.org/olnaz/node-vkapi.svg)](https://david-dm.org/olnaz/node-vkapi)
 

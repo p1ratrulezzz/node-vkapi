@@ -83,7 +83,8 @@ Method `vkapi.setOptions` returns `this`.
 
 Параметр `authData` имеет смысл передавать только в том случае, если вы планируете получать `access_token` путем авторизации по логину и паролю.
 
-### vkapi.call(method, params): returns Object{< .. VK API Response .. >}
+### vkapi.call(method, params):  
+* returns Object{< .. VK API Response .. >}
 * `method`* (String)
 * `params` (Object):
     * `< .. method params .. >`
@@ -93,7 +94,8 @@ Method `vkapi.setOptions` returns `this`.
 Если параметр `v` не передан, то `v` всегда будет равен последней версии VK API.  
 Параметр `access_token` имеет смысл передавать, если метод его требует и в `vkapi.options.token` он не задан. 
 
-### vkapi.getAccessToken(params): returns Object{access_token, expires_in?, user_id?}
+### vkapi.getAccessToken(params):  
+* returns Object{access_token, expires_in?, user_id?}
 * `params` (Object):
     * `client_id` (String): `vkapi.options.appId` by default
     * `client_secret` (String): `vkapi.options.appSecret` by default
@@ -106,7 +108,8 @@ Method `vkapi.setOptions` returns `this`.
 Если переданы параметры `code` и `redirect_uri`, то будет получен пользовательский `access_token`.  
 Если не передан какой-либо из параметров [`code`, `redirect_uri`], то будет получен серверный `access_token`.
 
-### vkapi.getTokenByLogin(params): returns Object{access_token, expires_in, user_id}
+### vkapi.getTokenByLogin(params):  
+* returns Object{access_token, expires_in, user_id}
 * `params` (Object):
     * `appId` (String): `vkapi.options.appId` by default
     * `scope` (String or Array): Permissions (vk.com/dev/permissions)
@@ -119,5 +122,6 @@ Method `vkapi.setOptions` returns `this`.
 
 После успешного получения токена, он сохраняется в `vkapi.options.token`.
 
-### vkapi.setOptions(options): returns this
+### vkapi.setOptions(options):  
+* returns this
 * `options` (Object): [Constructor object](#new-vkapi-options)

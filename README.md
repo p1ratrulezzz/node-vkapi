@@ -51,8 +51,8 @@ VK.call('users.get', {
     * `v` (String)
     * `access_token` (String)
 
-Если параметр `v` не передан, то `v` всегда будет равен последней версии VK API.
-`access_token` имеет смысл передавать, если метод его требует и в `vkapi.options.token` он не задан. 
+Если параметр `v` не передан, то `v` всегда будет равен последней версии VK API.  
+Параметр `access_token` имеет смысл передавать, если метод его требует и в `vkapi.options.token` он не задан. 
 
 ### vkapi.getAccessToken (params):
 * `params` (Object):
@@ -64,8 +64,8 @@ VK.call('users.get', {
 
 Получение `access_token` по переданным параметрам. 
 
-Если переданы параметры `code` и `redirect_uri`, то будет получен пользовательский `access_token`.
-Если не передан какой-либо из параметров `code`, `redirect_uri`, то будет получен серверный `access_token`.
+Если переданы параметры `code` и `redirect_uri`, то будет получен пользовательский `access_token`.  
+Если не передан какой-либо из параметров [`code`, `redirect_uri`], то будет получен серверный `access_token`.
 
 ### vkapi.getTokenByLogin (params):
 * `params` (Object):
@@ -76,4 +76,4 @@ VK.call('users.get', {
     * `v` (String): `vkapi.options.version` by default
 
 ### vkapi.setOptions (options):
-* `options` (Object): Constructor object
+* `options` (Object): [Constructor object](#new-vkapi-options)

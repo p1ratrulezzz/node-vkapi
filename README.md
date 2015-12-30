@@ -94,6 +94,8 @@ Method `vkapi.setOptions` returns `this`.
 Если параметр `v` не передан, то `v` всегда будет равен последней версии VK API.  
 Параметр `access_token` имеет смысл передавать, если метод его требует и в `vkapi.options.token` он не задан. 
 
+При возникновении ошибки `ETIMEDOUT` функция не возвращает её, а посылает аналогичный запрос. 
+
 ### vkapi.getAccessToken(params):  
 * `params` (Object):
     * `client_id` (String): `vkapi.options.appId` by default

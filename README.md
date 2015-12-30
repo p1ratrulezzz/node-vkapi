@@ -15,19 +15,33 @@ const VKApi = require('node-vkapi');
 vk = new VKApi({
   appId: 12345678, 
   appSecret: 'ASDwfekdlFAzxlk', 
-  v: '5.42'
+  authData: {
+    login: 'email@gmail.com', 
+    pass: 'qwerty123', 
+    phone: '+1234566789'
+  }, 
+  version: '5.42'
 });
 
-// handling errors
-vk.on('error', (error, args) => {
-  console.log(error); // http, parse or other error
-  console.log(args); // аргументы ф-ии, при которых возникла ошибка
-});
-
-// making requests
+// make requests
 vk.call('users.get', {
   user_ids: '1, 2, 3'
-}).then(r => console.log(r)) // vk api response json object
+})
+.then(r => console.log(r)) // vk api response json object
 .catch(e => console.log(e)) // vk api error json object
 
+// get access_token by 'code' param
+vk.getAccessToken({
+  code: 'jfksdj4ASDjksd', 
+  redirect_uri: 'http://yoursite.com/path'
+})
+.then(r => console.log(r)) // vk api response json object
+.catch(e => console.log(e)) // vk api error json object
+
+// get access_token via auth by login and pass
+vk.getTokenByLogin({
+  scope: ['friends', 'offline', 'photos']
+})
+.then(t => console.log(r)) // vk api response json object {access_token, expires_in, user_id}
+.catch(e => console.log(e)) // error object
 ```

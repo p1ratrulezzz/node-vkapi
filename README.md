@@ -27,7 +27,7 @@ VK.call('users.get', {
 * Getting server `access_token`
 * Uploading files to vk.com (soon)
 
-## Examples
+## Example
 
 ```javascript
 const VKApi = require('node-vkapi');

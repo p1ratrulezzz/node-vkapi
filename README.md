@@ -110,7 +110,9 @@ Method `vkapi.setOptions` returns `this`.
 Получение `access_token` по переданным параметрам. 
 
 Если переданы параметры `code` и `redirect_uri`, то будет получен пользовательский `access_token`.  
-Если не передан какой-либо из параметров [`code`, `redirect_uri`], то будет получен серверный `access_token`.
+Если не передан какой-либо из параметров [`code`, `redirect_uri`], то будет получен серверный `access_token`.  
+
+More details: [vk.com/dev/auth_server](https://vk.com/dev/auth_server), [vk.com/dev/secure](https://vk.com/dev/secure)
 
 ### vkapi.getTokenByLogin(params):  
 * `params` (Object):
@@ -130,7 +132,7 @@ Method `vkapi.setOptions` returns `this`.
 * `type` (String): One of given [types of uploads](#types-of-uploads)
 * `file` (Readable Stream): or Array of Readable Streams (only for `photo_album` type)
 * `params` (Object):
-    * `< .. method params .. >`: See vk.com/dev/upload_files
+    * `< .. method params .. >`: See [vk.com/dev/upload_files](https://vk.com/dev/upload_files)
     * `access_token`* (String): `vkapi.options.token` by default. **Required**, if default token was not set.
 * returs Object{< .. VK API Response .. >}
 

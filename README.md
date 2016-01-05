@@ -83,7 +83,7 @@ Method `vkapi.setOptions` returns `this`.
     * `token` (String): Access token
 
 
-Параметр `authData` имеет смысл передавать только в том случае, если вы планируете получать `access_token` путем авторизации по логину и паролю.
+You must pass parameter `authData` only if you plan to receive `access_token` by the login and password.
 
 ### vkapi.call(method, params):  
 * `method`* (String)
@@ -93,10 +93,10 @@ Method `vkapi.setOptions` returns `this`.
     * `access_token` (String): `vkapi.options.token` by default
 * returns Object{< .. VK API Response .. >}
 
-Если параметр `v` не передан, то `v` всегда будет равен последней версии VK API.  
-Параметр `access_token` имеет смысл передавать, если метод его требует и в `vkapi.options.token` он не задан. 
+If the parameter `v` was not passed, then `v` always be equal to the latest version of VK API.  
+You must pass parameter `authData` if the VK API method requires it and `vkapi.options.token` is null.
 
-При возникновении ошибки `ETIMEDOUT` функция не возвращает её, а посылает аналогичный запрос. 
+If the `ETIMEDOUT` error occurs function does not return it, and instead of this sends a request with same params. 
 
 ### vkapi.getAccessToken(params):  
 * `params` (Object):
@@ -107,10 +107,10 @@ Method `vkapi.setOptions` returns `this`.
     * `v` (String): `vkapi.options.version` by default
 * returns Object{access_token, expires_in?, user_id?, email?}
 
-Получение `access_token` по переданным параметрам. 
+Getting `access_token` by passed params. 
 
-Если переданы параметры `code` и `redirect_uri`, то будет получен пользовательский `access_token`.  
-Если не передан какой-либо из параметров [`code`, `redirect_uri`], то будет получен серверный `access_token`.  
+If `code` and `redirect_uri` params were passed, then user `access_token` will be got.  
+If one of params [`code`, `redirect_uri`] was not passed, then server `access_token` will be got. 
 
 More details: [vk.com/dev/auth_server](https://vk.com/dev/auth_server), [vk.com/dev/secure](https://vk.com/dev/secure)
 
@@ -123,10 +123,10 @@ More details: [vk.com/dev/auth_server](https://vk.com/dev/auth_server), [vk.com/
     * `v` (String): `vkapi.options.version` by default
 * returns Object{access_token, expires_in, user_id, email?}
 
-Перед использованием метода рекомендуется указать номер телефона в `vkapi.options.authData.phone`, если `login` является е-мэилом, так как при авторизации возможна "проверка безопасности", когда нужно подтвердить свой номер телефона, введя его в поле.  
-Номер телефона должен начинаться с +.  
+Before using this method recommended to provide a phone number in `vkapi.options.authData.phone`, if `login` is an e-mail, because during authorization may occur "security check" when you need to verify your phone number by entering it in the field.  
+Phone number must start with +.  
 
-После успешного получения токена, он сохраняется в `vkapi.options.token`.
+If `access_token` was got successfully, it will be saved in `vkapi.options.token`.
 
 ### vkapi.upload(type, file, params):
 * `type` (String): One of given [types of uploads](#types-of-uploads)
@@ -136,7 +136,7 @@ More details: [vk.com/dev/auth_server](https://vk.com/dev/auth_server), [vk.com/
     * `access_token`* (String): `vkapi.options.token` by default. **Required**, if default token was not set.
 * returs Object{< .. VK API Response .. >}
 
-Имейте в виду, что для загрузки файлов вы должны иметь соответствующие разрешения.
+Keep in mind, that to upload files you must have the appropriate permissions.
 
 #### Types of uploads
 * `audio`

@@ -146,6 +146,8 @@ Keep in mind, that to upload files you must have the appropriate permissions.
 * `photo_wall`
 * `photo_main`
 * `photo_album`
+* `photo_market`
+* `photo_market_album`
 
 #### Example of uploading
 

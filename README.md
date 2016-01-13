@@ -117,7 +117,7 @@ More details: [vk.com/dev/auth_server](https://vk.com/dev/auth_server), [vk.com/
 ### vkapi.getTokenByLogin(params):  
 * `params` (Object):
     * `appId` (String): `vkapi.options.appId` by default
-    * `scope` (String or Array): Permissions (vk.com/dev/permissions)
+    * `scope` (String or Array): Permissions ([vk.com/dev/permissions](https://vk.com/dev/permissions))
     * `login` (String): `vkapi.options.authData.login` by default
     * `pass` (String): `vkapi.options.authData.pass` by default
     * `v` (String): `vkapi.options.version` by default

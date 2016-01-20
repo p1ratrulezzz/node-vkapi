@@ -81,6 +81,10 @@ Method `vkapi.setOptions` returns `this`.
         * `phone` (String): Phone number (Example: +79991234567)
     * `version` (String): `Latest VK API version` by default
     * `token` (String): Access token
+    * `delays` (Boolean): Enable delays (334ms) between requests? `true` by default
+    * `captcha` (Object)
+        * `delay` (Number): Delay after captcha has been appeared (in ms). `60000ms` by default
+        * `antiCaptchaKey` (String): [anti-captcha.com](https://anti-captcha.com) API-key
 
 
 You must pass parameter `authData` only if you plan to receive `access_token` by the login and password.

@@ -181,5 +181,5 @@ VK.upload('photo_wall', fs.createReadStream('photo.png'))
 ```
 
 ### vkapi.setOptions(options):  
-* `options` (Object): [Constructor object](#new-vkapi-options)
+* `options` (Object): [Constructor object](#new-vkapioptions)
 * returns this

@@ -1,7 +1,7 @@
 {
   "name": "node-vkapi",
   "version": "1.2.1",
-  "description": "Node.JS SDK for vk.com API",
+  "description": "Node.js SDK for VKontakte API",
   "author": "olnaz",
   "repository": {
     "type": "git",

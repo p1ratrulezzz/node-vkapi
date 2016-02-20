@@ -132,12 +132,14 @@ Phone number must start with +.
 
 If `access_token` was got successfully, it will be saved in `vkapi.options.token`.
 
-### vkapi.upload(type, file, params):
+### vkapi.upload(type, file, params, saveParams):
 * `type` (String): One of given [types of uploads](#types-of-uploads)
 * `file` (Readable Stream): or Array of Readable Streams (only for `photo_album` type)
 * `params` (Object):
     * `< .. method params .. >`: See [vk.com/dev/upload_files](https://vk.com/dev/upload_files)
     * `access_token`* (String): `vkapi.options.token` by default. **Required**, if default token was not set.
+* `saveParams` (Object): 
+    * `< .. VK API method save-params .. >`: As example, you can specify `artist` and `title` params to save audiofile with certain title and artist. (See: [vk.com/dev/audio.save](https://vk.com/dev/audio.save))
 * returs Object{< .. VK API Response .. >}
 
 Keep in mind, that to upload files you must have the appropriate permissions.

@@ -1,5 +1,9 @@
 ## Change Log
 
+### v1.2.2
+* Some fixes
+* Now you can specify certain save-params for uploaded files
+
 ### v1.2.0
 * Anti-captcha and delays were added
 

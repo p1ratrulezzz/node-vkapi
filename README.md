@@ -84,6 +84,7 @@ Method `vkapi.setOptions` returns `this`.
     * `delays` (Boolean): Enable delays (334ms) between requests? `true` by default
     * `captcha` (Object)
         * `delay` (Number): Delay after captcha has been appeared (in ms). `60000ms` by default
+        * `service` (String): Captcha service (rucaptcha, anti-captcha, antigate). `anti-captcha` by default
         * `antiCaptchaKey` (String): [anti-captcha.com](https://anti-captcha.com) API-key
 
 

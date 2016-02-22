@@ -82,10 +82,9 @@ Method `vkapi.setOptions` returns `this`.
     * `version` (String): `Latest VK API version` by default
     * `token` (String): Access token
     * `delays` (Boolean): Enable delays (334ms) between requests? `true` by default
-    * `captcha` (Object)
-        * `delay` (Number): Delay after captcha has been appeared (in ms). `60000ms` by default
-        * `service` (String): Captcha service (rucaptcha, anti-captcha, antigate). `anti-captcha` by default
-        * `antiCaptchaKey` (String): [anti-captcha.com](https://anti-captcha.com) API-key
+    * `captchaDelay` (Number): Delay after captcha has been appeared (in ms). `60000ms` by default
+    * `captchaService` (String): Captcha service (rucaptcha, anti-captcha, antigate). `anti-captcha` by default
+    * `captchaKey` (String): Cpatcha service API-key
 
 
 You must pass parameter `authData` only if you plan to receive `access_token` by the login and password.

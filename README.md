@@ -1,7 +1,5 @@
 # Node.js SDK for VKontakte API
 
-[![Dependency Status](https://david-dm.org/olnaz/node-vkapi.svg)](https://david-dm.org/olnaz/node-vkapi)
-
 ```javascript
 'use strict';
 

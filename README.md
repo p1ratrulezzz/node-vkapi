@@ -35,16 +35,18 @@ VK.call('users.get', {
 const VKApi = require('node-vkapi');
 
 let VK = new VKApi({
-    appId: 1234567890, 
-    appSecret: 'app-secret-key', 
-    authData: {
+    app: {
+        id: 1234567890,
+        secret: 'app-secret-key'
+    }, 
+    auth: {
         login: '+79871234567', 
         pass: 'password123'
     }, 
     version: '5.40'
 });
 
-VK.getTokenByLogin({
+VK.auth.user({
     scope: ['audio', 'photos', 'friends', 'wall', 'offline']
 }).then(token => {
     return VK.call('wall.post', {
@@ -112,7 +114,7 @@ More details: [vk.com/dev/auth_server](https://vk.com/dev/auth_server), [vk.com/
     * `scope` (String or Array): Permissions ([vk.com/dev/permissions](https://vk.com/dev/permissions))
 
 If `type === android`, then access token will be got via offical Android app ([vk.com/dev/auth_direct](https://vk.com/dev/auth_direct)).  
-Else access token will be gained by "dirty way".
+Else access token will be gained "dirty way".
 
 Before using this method recommended to provide a phone number in `vkapi.options.auth.phone`, if `login` is an e-mail, because during authorization may occur "security check" when you have to verify your phone number by entering it in the field. Phone number must start with +.  
 

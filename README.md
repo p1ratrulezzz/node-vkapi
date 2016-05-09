@@ -22,10 +22,12 @@ VK.call('users.get', {
 
 * Calling all VK API methods
 * Getting user `access_token` using:
-    1. `code` and `redirect_uri` params
-    2. User's login and password
+    1. `code` and `redirect_uri` params (*)
+    2. Login and password (dirty way)
+    3. Login and password (via official Android app)
 * Getting server `access_token`
 * Uploading files to vk.com
+* Recognizing captcha
 
 ## Example
 
@@ -64,81 +66,64 @@ VK.getTokenByLogin({
 
 ## API Reference
 
-`*` - required param
-
 All methods, except `vkapi.setOptions`, return `Promise(response)`.  
 Method `vkapi.setOptions` returns `this`.
 
 ### new vkapi(options):
-* `options` (Object)
-    * `appSecret` (String): Application secret key
-    * `appId` (String or Number)
-    * `authData` (Object):
+* `options` (Object):
+    * `app` (Object): 
+        * `id` (Number): Application ID
+        * `secret` (String): Application secret-key
+    * `auth` (Object):
         * `login` (String)
         * `pass` (String)
         * `phone` (String): Phone number (Example: +79991234567)
-    * `version` (String): `Latest VK API version` by default
-    * `token` (String): Access token
+    * `captcha` (Object):
+        * `delay` (Number): Delay after captcha has been appeared (in ms). `100000ms` by default
+        * `service` (String): Captcha service (rucaptcha, anti-captcha, antigate). `anti-captcha` by default
+        * `key` (String): Cpatcha service API-key
     * `delays` (Boolean): Enable delays (334ms) between requests? `true` by default
-    * `captchaDelay` (Number): Delay after captcha has been appeared (in ms). `60000ms` by default
-    * `captchaService` (String): Captcha service (rucaptcha, anti-captcha, antigate). `anti-captcha` by default
-    * `captchaKey` (String): Cpatcha service API-key
+    * `token` (String): Access token
+    * `version` (String): `Latest VK API version` by default
 
 
-You must pass parameter `authData` only if you plan to receive `access_token` by the login and password.
+You must specify parameter `auth` only if you plan to receive `access_token` by the login and password.
 
 ### vkapi.call(method, params):  
-* `method`* (String)
+* `method` (String)
 * `params` (Object):
     * `< .. method params .. >`
     * `v` (String): `vkapi.options.version` by default
     * `access_token` (String): `vkapi.options.token` by default
-* returns Object{< .. VK API Response .. >}
 
 If the parameter `v` was not passed, then `v` always be equal to the latest version of VK API.  
-You must pass parameter `authData` if the VK API method requires it and `vkapi.options.token` is null.
+You must specify parameter `access_token` if the VK API method requires it, but `vkapi.options.token` is null.
 
-If the `ETIMEDOUT` error occurs function does not return it, and instead of this sends a request with same params. 
+If `ETIMEDOUT` or similar error occurs, function does not return it and tries to resend a request with same params. 
 
-### vkapi.getAccessToken(params):  
-* `params` (Object):
-    * `client_id` (String): `vkapi.options.appId` by default
-    * `client_secret` (String): `vkapi.options.appSecret` by default
-    * `code` (String)
-    * `redirect_uri` (String)
-    * `v` (String): `vkapi.options.version` by default
-* returns Object{access_token, expires_in?, user_id?, email?}
+### vkapi.auth.server():  
 
-Getting `access_token` by passed params. 
-
-If `code` and `redirect_uri` params were passed, then user `access_token` will be got.  
-If one of params [`code`, `redirect_uri`] was not passed, then server `access_token` will be got. 
-
+Getting server `access_token`. 
 More details: [vk.com/dev/auth_server](https://vk.com/dev/auth_server), [vk.com/dev/secure](https://vk.com/dev/secure)
 
-### vkapi.getTokenByLogin(params):  
+### vkapi.auth.user(params):  
 * `params` (Object):
-    * `appId` (String): `vkapi.options.appId` by default
+    * `type` (String): `android` or `null`
     * `scope` (String or Array): Permissions ([vk.com/dev/permissions](https://vk.com/dev/permissions))
-    * `login` (String): `vkapi.options.authData.login` by default
-    * `pass` (String): `vkapi.options.authData.pass` by default
-    * `v` (String): `vkapi.options.version` by default
-* returns Object{access_token, expires_in, user_id, email?}
 
-Before using this method recommended to provide a phone number in `vkapi.options.authData.phone`, if `login` is an e-mail, because during authorization may occur "security check" when you need to verify your phone number by entering it in the field.  
-Phone number must start with +.  
+If `type === android`, then access token will be got via offical Android app ([vk.com/dev/auth_direct](https://vk.com/dev/auth_direct)).  
+Else access token will be gained by "dirty way".
+
+Before using this method recommended to provide a phone number in `vkapi.options.auth.phone`, if `login` is an e-mail, because during authorization may occur "security check" when you have to verify your phone number by entering it in the field. Phone number must start with +.  
 
 If `access_token` was got successfully, it will be saved in `vkapi.options.token`.
 
-### vkapi.upload(type, file, params, saveParams):
+### vkapi.upload(type, params):
 * `type` (String): One of given [types of uploads](#types-of-uploads)
-* `file` (Readable Stream): or Array of Readable Streams (only for `photo_album` type)
 * `params` (Object):
-    * `< .. method params .. >`: See [vk.com/dev/upload_files](https://vk.com/dev/upload_files)
-    * `access_token`* (String): `vkapi.options.token` by default. **Required**, if default token was not set.
-* `saveParams` (Object): 
-    * `< .. VK API method save-params .. >`: As example, you can specify `artist` and `title` params to save audiofile with certain title and artist. (See: [vk.com/dev/audio.save](https://vk.com/dev/audio.save))
-* returs Object{< .. VK API Response .. >}
+    * `data` (Readable Stream): or Array of Readable Streams (only for `photo_album` type)
+    * `beforeUpload` (Object): Request parameters for 1st API-call (getting upload url). See [vk.com/dev/upload_files](https://vk.com/dev/upload_files)
+    * `afterUpload` (Object): Request parameters for 2nd API-call (saving file). As example, you can specify `artist` and `title` params to save audiofile with certain title and artist. (See: [vk.com/dev/audio.save](https://vk.com/dev/audio.save))
 
 Keep in mind, that to upload files you must have the appropriate permissions.
 
@@ -161,13 +146,15 @@ Keep in mind, that to upload files you must have the appropriate permissions.
 'use strict';
 
 const fs = require('fs');
-const VKapi = require('node-vkapi');
+const VKApi = require('node-vkapi');
 
-const VK = new VKapi({
+const VK = new VKApi({
   token: 'access_token'
 });
 
-VK.upload('photo_wall', fs.createReadStream('photo.png'))
+VK.upload('photo_wall', {
+    data: fs.createReadStream('photo.png')
+  })
   .then(r => {
     return VK.call('wall.post', {
       owner_id: r[0].owner_id, 
@@ -182,4 +169,3 @@ VK.upload('photo_wall', fs.createReadStream('photo.png'))
 
 ### vkapi.setOptions(options):  
 * `options` (Object): [Constructor object](#new-vkapioptions)
-* returns this

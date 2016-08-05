@@ -22,9 +22,8 @@ VK.call('users.get', {
 
 * Calling all VK API methods
 * Getting user `access_token` using:
-    1. `code` and `redirect_uri` params (*)
-    2. Login and password (dirty way)
-    3. Login and password (via official Android app)
+    1. Login and password (dirty way)
+    2. Login and password (via official Android app)
 * Getting server `access_token`
 * Uploading files to vk.com
 * Recognizing captcha

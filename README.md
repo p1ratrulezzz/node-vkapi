@@ -133,6 +133,7 @@ Keep in mind, that to upload files you must have the appropriate permissions.
 * `audio`
 * `video`
 * `document`
+* `graffiti` [github.com/olnaz/node-vkapi/blob/master/lib/files-upload.js#L36](How to use)
 * `photo_pm`
 * `photo_wall`
 * `photo_main`

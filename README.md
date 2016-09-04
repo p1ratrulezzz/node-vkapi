@@ -4,19 +4,18 @@
 'use strict';
 
 const VKApi = require('node-vkapi');
-
-let VK = new VKApi();
+const VK    = new VKApi();
 
 VK.call('users.get', {
-    user_ids: '1'
+  user_ids: '1'
 }).then(res => {
-    console.log(res);
+  console.log(res);
 });
 ```
 
 ## Installation
 
-    $ npm install node-vkapi --save
+    $ npm install node-vkapi --only=prod --save
     
 ## Features
 
@@ -32,36 +31,34 @@ VK.call('users.get', {
 
 ```javascript
 const VKApi = require('node-vkapi');
-
-let VK = new VKApi({
-    app: {
-        id: 1234567890,
-        secret: 'app-secret-key'
-    }, 
-    auth: {
-        login: '+79871234567', 
-        pass: 'password123'
-    }, 
-    version: '5.40'
+const VK    = new VKApi({
+  app: {
+    id: 1234567890,
+    secret: 'app-secret-key'
+  }, 
+  auth: {
+    login: '+79871234567', 
+    pass: 'password123'
+  }
 });
 
 VK.auth.user({
-    scope: ['audio', 'photos', 'friends', 'wall', 'offline']
+  scope: ['audio', 'photos', 'friends', 'wall', 'offline']
 }).then(token => {
-    return VK.call('wall.post', {
-        owner_id: token.user_id, 
-        friends_only: 0, 
-        message: 'Post to wall via node-vkapi'
-    }).then(res => {
-        // wall.post response
-        return 'https://vk.com/wall' + token.user_id + '_' + res.post_id;
-    });
+  return VK.call('wall.post', {
+    owner_id: token.user_id, 
+    friends_only: 0, 
+    message: 'Post to wall via node-vkapi'
+  }).then(res => {
+    // wall.post response
+    return 'https://vk.com/wall' + token.user_id + '_' + res.post_id;
+  });
 }).then(link => {
-    // returned data from previous .then
-    console.log('Post was published: ' + link);
+  // returned data from previous .then
+  console.log('Post was published: ' + link);
 }).catch(error => {
-    // catching errors
-    console.log(error);
+  // catching errors
+  console.log(error);
 });
 ```
 
@@ -112,10 +109,10 @@ More details: [vk.com/dev/auth_server](https://vk.com/dev/auth_server), [vk.com/
     * `type` (String): `android` or `null`
     * `scope` (String or Array): Permissions ([vk.com/dev/permissions](https://vk.com/dev/permissions))
 
-If `type === android`, then access token will be got via offical Android app ([vk.com/dev/auth_direct](https://vk.com/dev/auth_direct)).  
+If `type === android`, then access token will be got via official Android app ([vk.com/dev/auth_direct](https://vk.com/dev/auth_direct)).  
 Else access token will be gained "dirty way".
 
-Before using this method recommended to provide a phone number in `vkapi.options.auth.phone`, if `login` is an e-mail, because during authorization may occur "security check" when you have to verify your phone number by entering it in the field. Phone number must start with +.  
+Before using this method recommended to provide a phone number in `vkapi.options.auth.phone` if `login` is an e-mail, because during authorization may occur "security check" when you have to verify your phone number by entering it in the field. Phone number must start with +.  
 
 If `access_token` was got successfully, it will be saved in `vkapi.options.token`.
 
@@ -147,10 +144,9 @@ Keep in mind, that to upload files you must have the appropriate permissions.
 
 'use strict';
 
-const fs = require('fs');
+const fs    = require('fs');
 const VKApi = require('node-vkapi');
-
-const VK = new VKApi({
+const VK    = new VKApi({
   token: 'access_token'
 });
 

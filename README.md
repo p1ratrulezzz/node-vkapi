@@ -77,7 +77,6 @@ Method `vkapi.setOptions` returns `this`.
         * `pass` (String)
         * `phone` (String): Phone number (Example: +79991234567)
     * `captcha` (Object):
-        * `delay` (Number): Delay after captcha has been appeared (in ms). `100000ms` by default
         * `service` (String): Captcha service (rucaptcha, anti-captcha, antigate). `anti-captcha` by default
         * `key` (String): Cpatcha service API-key
     * `delays` (Boolean): Enable delays (334ms) between requests? `true` by default
@@ -127,10 +126,10 @@ Keep in mind, that to upload files you must have the appropriate permissions.
 
 #### Types of uploads
 * `audio`
-* `audio_msg` [*](https://github.com/olnaz/node-vkapi/blob/master/lib/files-upload.js#L44)
+* `audio_msg` [*](https://github.com/olnaz/node-vkapi/blob/master/lib/files-upload.js#L47)
 * `video`
 * `document`
-* `graffiti` [*](https://github.com/olnaz/node-vkapi/blob/master/lib/files-upload.js#L44)
+* `graffiti` [*](https://github.com/olnaz/node-vkapi/blob/master/lib/files-upload.js#L47)
 * `photo_pm`
 * `photo_wall`
 * `photo_main`

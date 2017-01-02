@@ -127,9 +127,10 @@ Keep in mind, that to upload files you must have the appropriate permissions.
 
 #### Types of uploads
 * `audio`
+* `audio_msg` [*](https://github.com/olnaz/node-vkapi/blob/master/lib/files-upload.js#L44)
 * `video`
 * `document`
-* `graffiti` [How to use](https://github.com/olnaz/node-vkapi/blob/master/lib/files-upload.js#L36)
+* `graffiti` [*](https://github.com/olnaz/node-vkapi/blob/master/lib/files-upload.js#L44)
 * `photo_pm`
 * `photo_wall`
 * `photo_main`
